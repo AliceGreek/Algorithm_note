@@ -574,6 +574,7 @@ int main()
 样例输出
 9 5
  */
+/*
 void swap(int* a,int* b)
 {
     if(*a < *b)
@@ -590,5 +591,294 @@ int main()
     scanf("%d%d",&x,&y);
     swap(&x,&y);
     printf("%d %d\n",x,y);
+    return 0;
+}*/
+/*
+ * C语言10.2
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 244  解决: 195
+[献花][花圈][TK题库]
+题目描述
+输入a、b、c三个整数，按先大后小的顺序输出a、b和c。注意请使用指针变量的方式进行比较和输出。
+
+输入
+三个用空格隔开的整数a、b和c。
+
+输出
+按先大后小的顺序输出a、b和c，用空格隔开。
+请注意行尾输出换行。
+
+样例输入
+9 0 10
+样例输出
+10 9 0
+ */
+/*
+void swap(int* a,int* b)
+{
+    if(*a < *b)
+    {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+}
+
+void sort(int* a)
+{
+    int maxIndex = 0;
+    int max = *a;
+    for(int i = 1;i < 3;i++)
+    {
+        if(max < *a + i)
+        {
+            max = *a + i;
+            maxIndex = i;
+        }
+    }
+    swap(a,a+maxIndex);
+    if(*a+1 < *a+2) swap(a+1,a+2);
+
+}
+
+int main()
+{
+    int a[3];
+    scanf("%d%d%d",&a[0],&a[1],&a[2]);
+    sort(a);
+    printf("%d %d %d\n",a[0],a[1],a[2]);
+    return 0;
+}*/
+/*
+ * C语言10.15
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 227  解决: 161
+[献花][花圈][TK题库]
+题目描述
+输入3个字符串，按从小到大的顺序输出。要求使用指针的方法进行处理。
+
+输入
+3行，每行一个用字符串。保证每个字符串的长度不超过20。
+
+输出
+按从小到大的顺序输出这3个字符串，每个字符串一行。
+请注意行尾输出换行。
+
+样例输入
+China
+CLOCK
+deal
+样例输出
+CLOCK
+China
+deal
+ */
+/*
+#include <string.h>
+
+//字符串交换
+void swap(char *str1, char *str2)
+{
+    char temp[21];
+    strcpy(temp,str1);
+    strcpy(str1,str2);
+    strcpy(str2,temp);
+}
+
+int main()
+{
+    char s1[21],s2[21],s3[21];
+    scanf("%s",s1);
+    scanf("%s",s2);
+    scanf("%s",s3);
+
+    if(strcmp(s1,s2) > 0)
+        swap(s1,s2);
+    if(strcmp(s1,s3) > 0)
+        swap(s1,s3);
+    if(strcmp(s2,s3) > 0)
+        swap(s2,s3);
+
+    printf("%s\n%s\n%s\n",s1,s2,s3);
+
+}*/
+/*
+#include <string.h>
+struct person{
+    char name[20];
+    int count;
+}leader[3] = {"Li",0,"Zhang",0,"Fun",0};
+int main()
+{
+    int times;
+    scanf("%d",&times);
+    while(times--)
+    {
+        char in[20];
+        scanf("%s",&in);
+        for(int i = 0; i < 3;i++)
+        {
+            if(strcmp(leader[i].name,in) == 0)
+                leader[i].count++;
+        }
+    }
+    for(int i = 0;i < 3;i++)
+    {
+        printf("%s:%d\n",leader[i].name,leader[i].count);
+    }
+    return 0;
+}*/
+/*
+ * C语言11.2
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 227  解决: 170
+[献花][花圈][TK题库]
+题目描述
+定义一个结构体student，存储学生的学号、名字、性别和年龄，读入每个学生的所有信息，保存在结构体中，并输出。结构体student的定义如下：
+struct student {
+    int num;
+    char name[20];
+    char sex;
+    int age;
+};
+本题要求使用指向结构体数组的指针进行输入和输出。
+
+输入
+第一行有一个整数n，表示以下有n个学生的信息将会输入。保证n不大于20。
+以后的n行中，每一行包含对应学生的学号、名字、性别和年龄，用空格隔开。保证每一个人名都不包含空格且长度不超过15，性别用M和F两个字符来表示。
+
+输出
+有n行，每行输出一个学生的学号、名字、性别和年龄，用空格隔开。
+请注意行尾输出换行。
+
+样例输入
+3
+10101 LiLin M 18
+10102 ZhangFun M 19
+10104 WangMin F 20
+样例输出
+10101 LiLin M 18
+10102 ZhangFun M 19
+10104 WangMin F 20
+
+ */
+
+/*
+struct student{
+    int num;
+    char name[20];
+    char sex;
+    int age;
+}p[21];
+
+int main()
+{
+    int num,i = 0;
+    scanf("%d",&num);
+    int storeNum = num;
+    while(num--)
+    {
+        scanf("%d%s %c%d",&(p+i)->num,(p+i)->name,&(p+i)->sex,&(p+i)->age);
+        i++;
+    }
+    for(int i = 0;i < storeNum;i++)
+    {
+        printf("%d %s %c %d\n",(p+i)->num,(p+i)->name,(p+i)->sex,(p+i)->age);
+    }
+    return 0;
+}
+ */
+/*
+struct {
+    int num;
+    char name[10];
+    char sex;
+    char job;
+    union{
+        int batch;
+        char position[10];
+    };
+}info[21];
+
+int main()
+{
+    int number;
+    scanf("%d",&number);
+    for(int i = 0;i < number;i++)
+    {
+        scanf("%d%s %c %c",&(info+i)->num,(info+i)->name,&(info+i)->sex,&(info+i)->job);
+        if((info+i)->job == 's') scanf("%d",&(info+i)->batch);
+        else if((info+i)->job == 't') scanf("%s",(info+i)->position);
+    }
+    //打印输入的结构信息
+    for(int i = 0;i < number;i++)
+    {
+        printf("%d %s %c %c ",(info+i)->num,(info+i)->name,(info+i)->sex,(info+i)->job);
+        if((info+i)->job == 's') printf("%d\n",(info+i)->batch);
+        else if ((info+i)->job == 't') printf("%s\n",(info+i)->position);
+    }
+    return 0;
+}*/
+/*
+ * C语言11.8
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 200  解决: 152
+[献花][花圈][TK题库]
+题目描述
+有10个学生，每个学生的数据包括学号、姓名、3门课程的成绩。读入这10个学生的数据，要求输出3门课程的总平均成绩，以及个人平均分最高的学生的数据（包括学号、姓名、3门课程成绩、平均分数）。
+
+输入
+共有10行，每行包含了一个学生的学号（整数）、名字（长度不超过19的无空格字符串）和3门课程的成绩（0至100之间的整数），用空格隔开。
+
+输出
+第一行包含了3个实数，分别表示3门课程的总平均成绩，保留2位小数，每个数之后输出一个空格。
+第二行输出个人平均分最高的学生的数据，与输入数据格式相同。如果有多位个人平均分最高的学生，输出按照输入顺序第一个最高分的学生数据。
+请注意行尾输出换行。
+
+样例输入
+101 AAA 80 81 82
+102 BBB 83 84 85
+103 CCC 86 87 88
+104 DDD 89 90 91
+105 EEE 92 93 94
+106 FFF 80 90 100
+107 GGG 85 90 95
+108 HHH 80 85 90
+109 III 90 91 92
+110 JJJ 91 88 87
+样例输出
+85.60 87.90 90.40
+105 EEE 92 93 94
+
+ */
+struct stuInfo
+{
+    int num;
+    char name[20];
+    int grade1;
+    int grade2;
+    int grade3;
+}stuInfo[15];
+int main()
+{
+    double sum_grade1 = 0, sum_grade2 = 0, sum_grade3 = 0;
+    double avg_grade;
+    double max = 0;
+    int maxIndex = 0;
+    for(int i = 0;i < 10;i++)
+    {
+        scanf("%d%s%d%d%d",&(stuInfo+i)->num,(stuInfo+i)->name,&(stuInfo+i)->grade1,&(stuInfo+i)->grade2,&(stuInfo+i)->grade3);
+        sum_grade1 += (stuInfo+i)->grade1;
+        sum_grade2 += (stuInfo+i)->grade2;
+        sum_grade3 += (stuInfo+i)->grade3;
+        avg_grade = ((stuInfo+i)->grade1 + (stuInfo+i)->grade2 + (stuInfo+i)->grade3)/3;
+        if(max < avg_grade)
+        {
+            max = avg_grade;
+            maxIndex = i;
+        }
+    }
+    printf("%.2f %.2f %.2f\n",sum_grade1/10,sum_grade2/10,sum_grade3/10);
+    printf("%d %s %d %d %d\n",(stuInfo+maxIndex)->num,(stuInfo+maxIndex)->name,(stuInfo+maxIndex)->grade1,(stuInfo+maxIndex)->grade2,(stuInfo+maxIndex)->grade3);
     return 0;
 }
