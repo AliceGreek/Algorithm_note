@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cmath>
+#include <cstring>
 /*
 int main() {
     char str1[20],str2[5][10];
@@ -851,6 +852,7 @@ int main()
 105 EEE 92 93 94
 
  */
+/*
 struct stuInfo
 {
     int num;
@@ -880,5 +882,286 @@ int main()
     }
     printf("%.2f %.2f %.2f\n",sum_grade1/10,sum_grade2/10,sum_grade3/10);
     printf("%d %s %d %d %d\n",(stuInfo+maxIndex)->num,(stuInfo+maxIndex)->name,(stuInfo+maxIndex)->grade1,(stuInfo+maxIndex)->grade2,(stuInfo+maxIndex)->grade3);
+    return 0;
+}*/
+//第三章  入门篇（1）——入门篇
+//PAT1032
+/*
+int main()
+{
+    int score[100000];
+    int index,value;
+    memset(score,0,sizeof(score));
+    int num;
+    scanf("%d",&num);
+    while(num--)
+    {
+        scanf("%d%d",&index,&value);
+        score[index] += value;
+    }
+    int max = 0;
+    int max_index = 0;
+    //遍历数组，找到最大数值
+    for(int i = 0;i < 100000;i++)
+    {
+        if(max < score[i])
+        {
+            max = score[i];
+            max_index = i;
+        }
+    }
+    printf("%d %d\n",max_index,max);
+    return 0;
+}*/
+/*
+int main()
+{
+    int n,x;
+    while(scanf("%d",&n) != EOF)
+    {
+        int a[n];
+        for(int i = 0;i < n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        scanf("%d",&x);
+        int i;
+        for(i = 0;i < n;i++)
+        {
+            if(a[i] == x)
+            {
+                printf("%d\n",i);
+                break;
+            }
+        }
+        if(i == n) printf("-1\n");
+
+    }
+    return 0;
+}*/
+/*
+ * 统计同成绩学生人数
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 221  解决: 144
+[献花][花圈][TK题库]
+题目描述
+读入N名学生的成绩，将获得某一给定分数的学生人数输出。
+
+输入
+测试输入包含若干测试用例，每个测试用例的格式为
+
+第1行：N
+第2行：N名学生的成绩，相邻两数字用一个空格间隔。
+第3行：给定分数
+
+当读到N=0时输入结束。其中N不超过1000，成绩分数为（包含）0到100之间的一个整数。
+
+输出
+对每个测试用例，将获得给定分数的学生人数输出。
+
+样例输入
+4
+70 80 90 100
+80
+3
+65 75 85
+55
+5
+60 90 90 90 85
+90
+0
+样例输出
+1
+0
+3
+ */
+
+ /*
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    while(n != 0)
+    {
+        int a[n];
+        for(int i = 0; i < n;i++)
+        {
+            scanf("%d",&a[i]);
+        }
+        int x;
+        scanf("%d",&x);
+        int count = 0;
+        for(int i = 0; i < n;i++)
+        {
+            if(a[i] == x) count++;
+        }
+        printf("%d\n",count);
+        scanf("%d",&n);
+    }
+    return 0;
+}
+  */
+
+ //Pat B1036 跟奥巴马一起学编程
+/*
+int main()
+ {
+     int col,row;
+     char output;
+     scanf("%d %c",&col,&output);
+     if(col % 2 == 0) row = col/2;
+     else row = col/2+1;
+     for(int i = 0;i < row;i++)
+     {
+         if(i == 0 || i == row-1)
+         {
+             for(int j = 0; j < col;j++) printf("%c",output);
+         }
+         else{
+             for(int j = 0; j < col;j++)
+             {
+                 if(j == 0 || j == col-1) printf("%c",output);
+                 else printf(" ");
+             }
+         }
+         printf("\n");
+     }
+     return 0;
+ }*/
+/*
+ * 输出梯形
+时间限制: 1 Sec  内存限制: 32 MB
+献花: 291  解决: 119
+[献花][花圈][TK题库]
+题目描述
+输入一个高度h，输出一个高为h，上底边为h的梯形。
+
+输入
+一个整数h(1<=h<=1000)。
+
+输出
+h所对应的梯形。
+
+样例输入
+5
+样例输出
+        *****
+      *******
+    *********
+  ***********
+*************
+ */
+/*
+int main()
+{
+    int h;
+    scanf("%d",&h);
+    int cols;
+    cols = h + 2*(h-1);
+    for(int j = 0; j < h;j++)
+    {
+        //打印空格
+        for(int i = 0; i < cols-h-2*j; i++)
+            printf(" ");
+
+        //打印星号
+        for(int i = 0; i < h + 2*j;i++)
+            printf("*");
+        printf("\n");
+    }
+
+    return 0;
+}*/
+/*
+int main()
+{
+    char str[81];
+    scanf("%s",str);
+    int len = strlen(str);
+    int side = (len+2)/3;
+    int middle = len - 2*side;
+    for(int i = 0;i < side;i++)
+    {
+        if(i == side-1)
+        {
+            for(int k = 0;k < middle+2;k++)
+                printf("%c",str[side+k-1]);
+        }
+        else
+        {
+            for(int j = 0;j < middle+2;j++)
+            {
+                if(j == 0)
+                    printf("%c",str[j+i]);
+                else if(j == middle+2-1)
+                    printf("%c",str[len-i-1]);
+                else printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}*/
+/*
+ * 沙漏图形 tri2str [1*+]
+时间限制: 1 Sec  内存限制: 128 MB
+献花: 102  解决: 72
+[献花][花圈][TK题库]
+题目描述
+问题：输入n，输出正倒n层星号三角形。首行顶格，星号间有一空格，效果见样例
+输入样例：
+3
+输出样例：
+* * *
+ * *
+  *
+ * *
+* * *
+数据规模 1<= n <=50
+ */
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int rows = (n-1)*2+1;
+    int blank_num;
+    //打印上半部分
+    for(int i = 0;i < n;i++)
+    {
+        //打印空格
+        blank_num = 0;
+        for(int j = 0;j < i;j++)
+        {
+            printf(" ");
+            blank_num++;
+        }
+
+        //打印星号
+        for(int k = 0;k < n-i;k++)
+            printf("* ");
+        printf("\n");
+    }
+
+    //打印下半部分
+    blank_num --;
+    int star_num = 2;
+    for(int i = 0;i < rows-n;i++)
+    {
+        //打印空格
+        for(int j = 0;j < blank_num;j++)
+        {
+            printf(" ");
+        }
+        blank_num--;
+        //打印星号
+        for(int k = 0;k < star_num;k++)
+        {
+            printf("* ");
+        }
+        star_num++;
+        printf("\n");
+    }
+
+
     return 0;
 }
